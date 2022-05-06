@@ -5,15 +5,28 @@ import { Link } from "react-router-dom";
 function Layout({ children }) {
   return (
     <Stack h="100vh">
-      <Flex bg="purple.100" p={4} justifyContent="space-around" alignItems="center" h="10vh">
-        <Box>
+      <Flex
+        bg="purple.100"
+        p={4}
+        pr="30vh"
+        pl="30vh"
+        justifyContent="space-around"
+        alignItems="center"
+        h="10vh"
+      >
+        <Box
+          onClick={() => {
+            window.location.reload();
+          }}
+          cursor="pointer"
+        >
           <Text fontWeight="bold" fontSize="3xl">
             NFT-Exchange
           </Text>
         </Box>
         <Link to="/">
           <Button size="md" colorScheme="red">
-            <Text fontSize="xl">Main</Text>
+            <Text fontSize="xl">Mint NFT</Text>
           </Button>
         </Link>
         <Link to="/my-nft">
