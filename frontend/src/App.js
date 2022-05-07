@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import MintNFT from "./routes/mintNFT";
+import MyNFT from "./routes/myNFT";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -30,8 +31,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<MintNFT account={account} />} />
-          {/* 
           <Route path="/my-nft" element={<MyNFT account={account} />} />
+          {/*
           <Route path="/sale-nft" element={<SaleNFT account={account} />} /> 
           */}
         </Routes>
