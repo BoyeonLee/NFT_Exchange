@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import MintNFT from "./routes/mintNFT";
 import MyNFT from "./routes/myNFT";
+import SaleNFT from "./routes/saleNFT";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -32,9 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MintNFT account={account} />} />
           <Route path="/my-nft" element={<MyNFT account={account} />} />
-          {/*
-          <Route path="/sale-nft" element={<SaleNFT account={account} />} /> 
-          */}
+          <Route path="/sale-nft" element={<SaleNFT account={account} />} />
         </Routes>
       </Layout>
     </BrowserRouter>
