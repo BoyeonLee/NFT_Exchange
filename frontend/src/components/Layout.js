@@ -16,7 +16,7 @@ function Layout({ children }) {
       >
         <Box
           onClick={() => {
-            window.location.reload();
+            window.location.replace("/");
           }}
           cursor="pointer"
         >

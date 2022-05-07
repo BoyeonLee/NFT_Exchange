@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Grid } from "@chakra-ui/react";
+import { Grid, Box, Heading } from "@chakra-ui/react";
 import { registerTokenContract, saleTokenContract } from "./../contracts/contracts_info";
 import SaleNFTCard from "../components/SaleNFTCard";
 
@@ -33,21 +33,26 @@ const SaleNFT = ({ account }) => {
   }, []);
 
   return (
-    <Grid w="40vw" mt={4} templateColumns="repeat(4, 1fr)" gap={8}>
-      {saleCardArray &&
-        saleCardArray.map((v, i) => {
-          return (
-            <SaleNFTCard
-              key={i}
-              tokenId={v.tokenId}
-              tokenUri={v.tokenUri}
-              tokenPrice={v.tokenPrice}
-              account={account}
-              getOnSaleTokens={getOnSaleTokens}
-            />
-          );
-        })}
-    </Grid>
+    <>
+      <Box textAlign="center" mb={10}>
+        <Heading>Sale NFT</Heading>
+      </Box>
+      <Grid w="40vw" mt={4} templateColumns="repeat(4, 1fr)" gap={8}>
+        {saleCardArray &&
+          saleCardArray.map((v, i) => {
+            return (
+              <SaleNFTCard
+                key={i}
+                tokenId={v.tokenId}
+                tokenUri={v.tokenUri}
+                tokenPrice={v.tokenPrice}
+                account={account}
+                getOnSaleTokens={getOnSaleTokens}
+              />
+            );
+          })}
+      </Grid>
+    </>
   );
 };
 

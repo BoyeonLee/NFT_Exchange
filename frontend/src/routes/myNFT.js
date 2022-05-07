@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Text, Button, Grid } from "@chakra-ui/react";
+import { Flex, Text, Button, Grid, Heading, Box } from "@chakra-ui/react";
 import { registerTokenContract, saleTokenAddress } from "./../contracts/contracts_info";
 import MyNFTCard from "./../components/MyNFTCard";
 
@@ -70,6 +70,9 @@ const MyNFT = ({ account }) => {
 
   return (
     <>
+      <Box textAlign="center" mb={10}>
+        <Heading>My NFT</Heading>
+      </Box>
       <Flex alignItems>
         <Text display="inline-block" fontSize="lg" fontWeight="bold">
           Sale Status : {saleStatus ? "True" : "False"}
