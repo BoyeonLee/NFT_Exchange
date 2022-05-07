@@ -40,13 +40,11 @@ contract RegisterToken is ERC721Enumerable {
     }
 
     /// @dev : _tokenOwner가 가진 모든 nft를 반환하는 함수
-    function getToken(address _tokenOwner, address _saleToken) public returns (TokenData[] memory) {
+    function getToken(address _tokenOwner) view public returns (TokenData[] memory) {
         uint256 balanceLength = balanceOf(_tokenOwner);
         require(balanceLength != 0, "Owner did not have token");
 
         TokenData[] memory tokenData = new TokenData[](balanceLength);
-
-        setSaleToken(_saleToken);
 
         for (uint256 i=0; i<balanceLength; i++) {
             uint256 tokenId = tokenOfOwnerByIndex(_tokenOwner, i);
