@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, Button, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { pinataApiKey, pinataSecretApiKey } from "../pinata_api_key";
 import { registerTokenContract } from "./../contracts/contracts_info";
@@ -7,6 +7,7 @@ import AlertBlockHash from "./AlertBlockHash";
 
 const GetFormData = ({ account, imageHash }) => {
   const [blockHash, setBlockHash] = useState("");
+  const toast = useToast();
 
   const mintNFT = async (account, metadataHash) => {
     if (!account) return;
