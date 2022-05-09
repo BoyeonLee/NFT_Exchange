@@ -50,6 +50,18 @@ contract SaleToken {
         }
     }
 
+    /// @dev : 토큰 가격을 수정하는 함수
+    function editForSaleToken(uint256 _tokenId, uint256 _price) public {
+        address tokenOwner = registerToken.ownerOf(_tokenId);
+
+        require(tokenOwner == msg.sender, "Caller is not token owner");
+        require(_price > 0, "Price is zero or lower");
+        require(tokenPrices[_tokenId] != 0, "This token is not set for price");
+        require(registerToken.isApprovedForAll(tokenOwner, address(this)), "Token owner did not approve token");
+
+        tokenPrices[_tokenId] = _price;
+    }
+
     /// @dev : onSaleTokenArray 길이 반환하는 함수
     function getOnSaleTokenArrayLength() view public returns(uint256) {
         return onSaleTokenArray.length;
