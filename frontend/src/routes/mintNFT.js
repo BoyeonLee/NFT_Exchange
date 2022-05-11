@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Box, Flex, Heading } from "@chakra-ui/react";
-import axios from "axios";
-import FormData from "form-data";
-import { pinataApiKey, pinataSecretApiKey } from "../pinata_api_key";
 import GetFormData from "../components/GetFormData";
+import { create } from "ipfs-http-client";
 
 const MintNFT = ({ account }) => {
   const [imageSrc, setImageSrc] = useState("");
   const [imageHash, setImageHash] = useState("");
+
+  const client = create("https://ipfs.infura.io:5001/api/v0");
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
@@ -20,27 +20,13 @@ const MintNFT = ({ account }) => {
     });
   };
 
-  const pinFileToIPFS = (pinataApiKey, pinataSecretApiKey, image) => {
-    const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
-
-    let data = new FormData();
-    data.append("file", image);
-
-    return axios
-      .post(url, data, {
-        maxBodyLength: "Infinity", //this is needed to prevent axios from erroring out with large files
-        headers: {
-          "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
-          pinata_api_key: pinataApiKey,
-          pinata_secret_api_key: pinataSecretApiKey,
-        },
-      })
-      .then(function (response) {
-        setImageHash(response.data.IpfsHash);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+  const imageToIPFS = async (image) => {
+    try {
+      const imageHash = await client.add(image);
+      setImageHash(imageHash.path);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -65,7 +51,7 @@ const MintNFT = ({ account }) => {
               name="image"
               onChange={(e) => {
                 encodeFileToBase64(e.target.files[0]);
-                pinFileToIPFS(pinataApiKey, pinataSecretApiKey, e.target.files[0]);
+                imageToIPFS(e.target.files[0]);
               }}
             ></input>
             {imageSrc && (

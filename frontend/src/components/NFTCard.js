@@ -7,21 +7,17 @@ const NFTCard = ({ tokenUri }) => {
 
   const getJsonData = async () => {
     const response = await axios.get(tokenUri);
-    const responseData = JSON.parse(Object.keys(response.data));
-    if (!responseData) return;
 
-    setImageURI(responseData.image);
+    if (!response.data) return;
+
+    setImageURI(response.data.image);
   };
 
   useEffect(() => {
     getJsonData();
   }, []);
 
-  return (
-    <Box>
-      <Image w="20vw" h="28vh" src={imageURI} alt="NFTImage" />
-    </Box>
-  );
+  return <Box>{imageURI && <Image w="20vw" h="28vh" src={imageURI} alt="NFTImage" />}</Box>;
 };
 
 export default NFTCard;

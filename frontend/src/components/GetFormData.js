@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
-import axios from "axios";
-import { pinataApiKey, pinataSecretApiKey } from "../pinata_api_key";
 import { registerTokenContract } from "./../contracts/contracts_info";
 import AlertBlockHash from "./AlertBlockHash";
+import { create } from "ipfs-http-client";
 
 const GetFormData = ({ account, imageHash }) => {
   const [blockHash, setBlockHash] = useState("");
 
+  const client = create("https://ipfs.infura.io:5001/api/v0");
+
   const mintNFT = async (account, metadataHash) => {
     if (!account) return;
 
-    const ipfsURI = `https://gateway.pinata.cloud/ipfs/${metadataHash}`;
+    const ipfsURI = `https://ipfs.infura.io/ipfs/${metadataHash}`;
 
     const response = await registerTokenContract.methods
       .registerNft(ipfsURI)
@@ -22,29 +23,20 @@ const GetFormData = ({ account, imageHash }) => {
     }
   };
 
-  const pinJSONToIPFS = (pinataApiKey, pinataSecretApiKey, JSONBody) => {
-    const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
-    return axios
-      .post(url, JSONBody, {
-        headers: {
-          pinata_api_key: pinataApiKey,
-          pinata_secret_api_key: pinataSecretApiKey,
-        },
-      })
-      .then(function (response) {
-        const metadataHash = response.data.IpfsHash;
-        mintNFT(account, metadataHash);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+  const metadataToIPFS = async (metadata) => {
+    try {
+      const metadataHash = await client.add(metadata);
+      mintNFT(account, metadataHash.path);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const description = e.target.description.value;
-    const imageHashUrl = `https://gateway.pinata.cloud/ipfs/${imageHash}`;
+    const imageHashUrl = `https://ipfs.infura.io/ipfs/${imageHash}`;
 
     const metadata = JSON.stringify({
       name: name,
@@ -52,7 +44,7 @@ const GetFormData = ({ account, imageHash }) => {
       image: imageHashUrl,
     });
 
-    pinJSONToIPFS(pinataApiKey, pinataSecretApiKey, metadata);
+    metadataToIPFS(metadata);
   };
 
   return (
@@ -61,7 +53,7 @@ const GetFormData = ({ account, imageHash }) => {
         <FormLabel>NFT 이름</FormLabel>
         <Input type="text" placeholder="NFT 이름을 입력하세요." name="name" />
       </FormControl>
-      <FormControl mt={6} mb={6} isRequired>
+      <FormControl mt={4} mb={3} isRequired>
         <FormLabel>NFT 설명</FormLabel>
         <Input
           type="text"
