@@ -14,7 +14,7 @@ const AlertBlockHash = ({ blockHash }) => {
 
   return (
     isVisible && (
-      <Alert status="success" position="fixed" w="30vw" bottom={170} left={750}>
+      <Alert status="success" position="relative" mt={5}>
         <AlertIcon />
         <Box>
           <AlertTitle>BlockHash</AlertTitle>
