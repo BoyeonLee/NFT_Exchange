@@ -1,4 +1,4 @@
-# 🏁 NFT_project
+# 🏁 NFT_Exchange
 자신이 가지고 있는 NFT(Image)를 등록한 후에 사고 팔 수 있는 사이트입니다.
 
 ## 👍 프로젝트 구성 안내
@@ -11,7 +11,7 @@
 7. 배포는 **Nestify**를 이용하였습니다.
 
 ## 🤞 실행방법
-[NFT-Project](https://nftprojectwithreact.netlify.app/) <br><br>
+[NFT-Exchange](https://spiffy-lokum-8a4a7e.netlify.app/) <br><br>
 위 링크를 이용하시면 됩니다. <br>
 (Metamask가 없을 시 에러가 발생할 수도 있습니다.)
 
