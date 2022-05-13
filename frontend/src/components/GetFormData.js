@@ -3,6 +3,7 @@ import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 import { registerTokenContract } from "./../contracts/contracts_info";
 import AlertBlockHash from "./AlertBlockHash";
 import { create } from "ipfs-http-client";
+import Swal from "sweetalert2";
 
 const GetFormData = ({ account, imageHash }) => {
   const [blockHash, setBlockHash] = useState("");
@@ -37,6 +38,11 @@ const GetFormData = ({ account, imageHash }) => {
     const name = e.target.name.value;
     const description = e.target.description.value;
     const imageHashUrl = `https://ipfs.infura.io/ipfs/${imageHash}`;
+
+    if (imageHashUrl === "https://ipfs.infura.io/ipfs/") {
+      Swal.fire({ title: "이미지가 IPFS에 등록되지 않았습니다.", width: 600 });
+      return;
+    }
 
     const metadata = JSON.stringify({
       name: name,
