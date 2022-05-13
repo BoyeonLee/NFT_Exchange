@@ -3,15 +3,16 @@
 
 ## 👍 프로젝트 구성 안내
 1. smart-contract는 **Solidity**를 이용해 작성하였습니다.(**ERC-721**)
-2. smart-contract와 frontend와의 연결은 **Web3.js**를 이용하였습니다.
-3. smart-wallet은 **Metamask**를 이용하였습니다.
-4. 사용자가 올린 NFT는 **Infura IPFS**에 등록하였습니다.
-5. frontend는 **React**로 구성하였습니다.
-6. css는 **Chakra-UI**를 이용하였습니다.
-7. 배포는 **Nestify**를 이용하였습니다.
+2. Blockchain은 **Ropsten Test Network**를 이용하였습니다.
+3. smart-contract와 frontend와의 연결은 **Web3.js**를 이용하였습니다.
+4. smart-wallet은 **Metamask**를 이용하였습니다.
+5. 사용자가 올린 NFT는 **Infura IPFS**에 등록하였습니다.
+6. frontend는 **React**로 구성하였습니다.
+7. css는 **Chakra-UI**를 이용하였습니다.
+8. 배포는 **Netlify**를 이용하였습니다.
 
 ## 🤞 실행방법
-[NFT-Exchange](https://spiffy-lokum-8a4a7e.netlify.app/) <br><br>
+[NFT-Exchange](https://nftexchange.netlify.app/) <br><br>
 위 링크를 이용하시면 됩니다. <br>
 (Metamask가 없을 시 에러가 발생할 수도 있습니다.)
 
@@ -34,9 +35,18 @@
     - NFT 구매
 
 ## 🖖 진행 기간
-- 2022-05-02 ~ 2022-05-11
+- 2022-05-02 ~ 2022-05-13
 
 ## 🖐 버전
-- 1.0 : 2022-05-11
+- 1.0 : 2022-05-13
 
 ## 🙏 데모
+### mintNFT
+![mintNFT_gif](https://user-images.githubusercontent.com/78004477/168217666-2c7c7b88-9833-459b-ac2f-f6dae31e9375.gif)
+
+### myNFT
+![myNFT_gif](https://user-images.githubusercontent.com/78004477/168217788-032f07c0-11d5-4f8a-b1f0-14be673a9895.gif)
+
+### saleNFT
+![saleNFT_gif](https://user-images.githubusercontent.com/78004477/168218080-c65c0df2-b967-4192-9970-c75691f4f4ef.gif)
+
