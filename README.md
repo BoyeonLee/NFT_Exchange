@@ -3,7 +3,7 @@
 
 ## 👍 프로젝트 구성 안내
 1. smart-contract는 **Solidity**를 이용해 작성하였습니다.(**ERC-721**)
-2. Blockchain은 **Ropsten Test Network**를 이용하였습니다.
+2. Blockchain은 Ethereum의 **Ropsten Test Network**를 이용하였습니다.
 3. smart-contract와 frontend와의 연결은 **Web3.js**를 이용하였습니다.
 4. smart-wallet은 **Metamask**를 이용하였습니다.
 5. 사용자가 올린 NFT는 **Infura IPFS**에 등록하였습니다.
